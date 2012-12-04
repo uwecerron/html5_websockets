@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+          <style>
+               
+                            background:yellow; border:2px groove; float:right; }
+                          p { margin:0; margin-left:10px; color:red; width:220px;
+                                    height:120px; padding-top:70px;
+                                          float:left; font-size:14px; }
+                                        span { display:block; }
+                                          </style>
+                                            <script src="http://code.jquery.com/jquery-latest.js"></script>
+                                        </head>
+                                        <body>
+                                              <p>
+                                                  <span>Move the mouse over the div.</span>
+                                                      <span>&nbsp;</span>
+                                                        </p>
+
+                                                       
+                                                          <script>
+                                                
+                                                                          
+
+                                                          var ws = new WebSocket("ws://localhost:8081", 'echo-protocol');
+
+                                                                  $("html").mousemove(function(e){
+                                                                     
+                                                                           var pageCoords = "( " + e.pageX + ", " + e.pageY + " )";
+                                                                     var clientCoords = "( " + e.clientX + ", " + e.clientY + " )";
+                                                                       $("span:first").text("( e.pageX, e.pageY ) : " + pageCoords);
+                                                                        $("span:last").text("( e.clientX, e.clientY ) : " + clientCoords);
+                                                                              $("input").val(clientCoords);
+                                                                                                                                                                		                                                             /*   ws.onopen= function(e){
+                                                                            	    ws.send(pageCoords);
+                                                                          
+                                                                            }*/
+                                                                            
+                                                                            
+                                                                             function sendNumber() {
+           
+         ws.send(pageCoords);
+           
+        
+    }
+				sendNumber();
+				
+            
+                                                                            
+                                                                            	          
+                                                                            });         
+                                                                           
+                                                                          
+                                                                                          
+               
+            
+			//	function sendNumber() {
+				
+                              
+           // var number = Math.round(Math.random() * 0xFFFFFF);
+       
+         //   setTimeout(sendNumber, 1000);
+        
+  // }
+			//	sendNumber();
+				
+          
+                                                                                              
+                                                                                              
+                                                                                              
+                                                                                               
+                                                                                                 
+ 
+                                                      /*
+    $("input").keyup(function () {
+      var value = "hello";
+      $("p2").text(value);
+    }).keyup();
+*/
+ // $("input").click(function () {
+    
+  //  });
+                                            
+                                                                                                  
+                                                                                                  
+                                                                                                  
+                                                                                                  
+                                                                                             
+
+                                                                                              </script>
+
+<div>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+  <input type="text"/>
+  <p2></p2>
+
+</div>
+                                                                                          </body>
+                                                                                      </html>
+
+
+  

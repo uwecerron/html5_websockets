@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  #box { background: black; width:200px; height:200px; color: snow; padding:10px; margin-left:45%;margin-top:20%; }
+  
+  #container{
+	  
+  	position:relative;
+	float:none;
+ left:30%;
+ bottom:-40%;
+
+	
+			width:600px;
+			   height:600px;
+			   border-style: groove;
+	
+	/* Round the corners */
+
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+  }
+  
+  </style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  <div id="container">
+  <div id="box">I am WebRtc</div>
+  </div>
+<script>
+                                              
+
+                                                          var ws = new WebSocket("ws://localhost:8081", 'echo-protocol');
+/*
+                                                                  $("html").mousemove(function(e){
+                                                                     
+                                                                           var pageCoords = "( " + e.pageX + ", " + e.pageY + " )";
+                                                                     var clientCoords = "( " + e.clientX + ", " + e.clientY + " )";
+                                                                       $("span:first").text("( e.pageX, e.pageY ) : " + pageCoords);
+                                                                        $("span:last").text("( e.clientX, e.clientY ) : " + clientCoords);
+                                                                              $("input").val(clientCoords);
+                                                                                     */                                                                        /*   		                                                                ws.onopen= function(e){
+                                                                            	
+                                                                            
+                                                                             function sendNumber() {
+           
+         ws.send("2");
+           
+        console.log("sent 2");
+    }
+				sendNumber();
+				*/
+			
+			
+		
+			
+			//original
+			var documentWidth = $("#container").width();
+		
+			var documentHeight = $("#container").height();
+			var height=Number(documentHeight);
+			var width =Number(documentWidth);
+			
+				console.log(documentWidth);
+			console.log(documentHeight);
+			
+	var xx=20;
+	var zz=500;
+	
+	 var constant=height/-5;
+	 var scalar= width/-10;
+	 var yy=500;
+	 
+	 var boundaryLeft;
+	 var boundaryRight;
+	 
+	 
+					   var regex = /Accels: -\d+(?!\.)|Accels: \d+(?!\.)/;//^Accels: ([0-9\.]+) \(([a-zA-Z ]+)\)$/;
+var regex2=/-\d+(?!\.)|\d+(?!\.)/;
+
+				
+				//var dasregex=/Gyros: \d+(?!\.)\s\d+(?!\.)|Gyros: \d+(?!\.)\s-\d+(?!\.)/ ;
+				//working dasregex
+				var dasregex=/Gyros: \d+(?!\.)\s\d+(?!\.)|Gyros: \d+(?!\.)\s-?[1-9]\d{0,2}/
+				
+//var dasregex2=/[^Gyros: \d+(?!\.)|Gyros: -\d+(?!\.)]/;
+//working regex   var dasregex2=/\s?[1-9]\d{0,2}|\s-?[1-9]\d{0,2}/;
+var dasregex2=/\s(?!0)?[1-9]\d{0,2}|\s(?!0)-?[1-9]\d{0,2}/;
+
+//var dasregex2=/\s\s\s\s\s\s\s\s\d+(?!\.)|\s\s\s\s\s\s\s\s-\d+(?!\.)/;
+//working dasregex2
+//var dasregex2=/\d+(?!\.)|-\d+(?!\.)/;
+
+				var dasdata; 
+				var result
+				
+				
+						  ws.onmessage = function (evt) 
+     { 
+	 
+	 
+        var received_msg = evt.data;
+		var dasdata2 = received_msg.toString();
+		//headtrack variable parsing
+		
+		var leflan = dasdata2.split("");
+		 
+		
+		
+		
+       //console.log(evt.data);
+	  /* 
+	   //vertical variable parsing
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ dasdata = received_msg.toString(); 
+ 
+
+ //var dasdata="Temp: 62898	Accels: -1	-32	1	Gyros: 0  ";
+  result =dasdata.match(regex);
+   result2=result.toString();
+result2= result2.match(regex2);
+ //util.puts(ledata.match(regex));
+  //result2=40;
+	// console.log(result2);
+	  //var result3=30;
+	  //vertica; variables
+	 */
+	
+	// yy=constant*result2;
+	yy=constant*leflan[1];//*dasdata2;
+	 //vertical axis
+    $( "#box" ).css( "marginTop", yy );
+
+//horizontal variable parsing	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	 
+//	var regex = /Gyros: -\d+(?!\.)|Gyros: \d+(?!\.)/;//^Accels: ([0-9\.]+) \(([a-zA-Z ]+)\)$/;
+
+//var dasregex3=/\d+(?!\.)|-\d+(?!\.)/;
+//var regex=/Accels: -\d+(?!\.)|Accels: \d+(?!\.)/
+//var regex2=/-\d+(?!\.)|\d+(?!\.)/;
+
+
+/*
+ //var dasdata="Temp: 63804     Accels: 5       31      -2      Gyros: 0        -40       0       Mag: 0  0       0 ";
+ var result3 =dasdata2.match(dasregex);
+ var leresult = String(result3);
+ var result4=leresult.match(dasregex2);
+ //var result5=result4.toString();
+ //var result5=result5.match(dasregex3);
+	
+	//var xx=50;
+	//var constant2=-25;
+	//var counter=0;
+	//console.log(result4);
+	
+	var string_to_integer=Number(result4);
+	//console.log(string_to_integer);
+	//console.log(string_to_integer);
+	
+	//xx=constant2*result4;
+	
+	
+	*/
+	
+	/*
+	if(Math.abs(string_to_integer)>0){
+		xx=result4*scalar;
+		zz=zz+xx;
+		 $( "#box" ).css( "marginLeft",zz);	
+		
+	}/*else if(string_to_integer<0){
+		xx=xx+string_to_integer;
+		
+	}
+	*/
+	//console.log(zz);
+	
+	 yy=constant*leflan[2];//*dasdata2;
+	 //vertical axis
+    $( "#box" ).css( "marginTop", yy );
+
+
+	/*
+	for (var i=0;i<result5;i++);
+
+	xx=constant2*i++;
+	*/
+	//horizontal variables
+	
+	//console.log(result5);
+	
+	//var xx=10;
+	//var xx=constant2*result4;
+	//horizontal axis
+	
+
+	   
+	 };
+																					 
+	
+	 
+	 //working parser
+	 /*
+	    var regex = /Accels: -\d+(?!\.)|Accels: \d+(?!\.)/;//^Accels: ([0-9\.]+) \(([a-zA-Z ]+)\)$/;
+var regex2=/-\d+(?!\.)|\d+(?!\.)/;
+
+ var dasdata="Temp: 62898	Accels: -4	-32	1	Gyros: 0  ";
+ var result =dasdata.match(regex);
+   result2=result.toString();
+  result2= result2.match(regex2);
+ //util.puts(ledata.match(regex));
+  
+	 console.log(result2);
+	  //var result3=30;
+	 var z=-5;
+	 var xx=z*result2;
+    $( "#box" ).css( "marginTop", xx );
+	*/
+	
+</script>
+
+</body>
+</html>
